@@ -22,7 +22,7 @@ class ExpanceItem extends StatelessWidget {
               children: [
                 Text('\$${expance.amount.toStringAsFixed(2)}'),
                 Spacer(),
-                Text(expance.category.toString()),
+                //Text(expance.category.toString()),
                 Spacer(),
                 Row(
                   children: [

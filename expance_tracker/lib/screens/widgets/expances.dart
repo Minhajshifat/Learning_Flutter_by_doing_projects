@@ -33,7 +33,26 @@ class _ExpancesState extends State<Expances> {
       );
   }
   //test
-
+  void onremoveData(Expance expance){
+    final indx=data.indexOf(expance);
+    setState(() {
+      data.remove(expance);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Expance deleting..."),
+    duration: Duration(seconds: 3),
+      
+      action:SnackBarAction(label:"Undo delete", onPressed:(){
+      setState(() {
+        data.insert(indx, expance);
+      });
+    }),
+    
+    
+    )
+    
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +69,7 @@ class _ExpancesState extends State<Expances> {
         body: Column(
           children: [
             Center(child: Text("Hello Expenxe")),
-           Expanded(child: ExpanceList(expences: data))
+           Expanded(child: ExpanceList(expences: data,onremoveData: onremoveData,))
           ],
         ),
       );
