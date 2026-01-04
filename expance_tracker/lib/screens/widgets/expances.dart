@@ -1,3 +1,4 @@
+import 'package:expance_tracker/main.dart';
 import 'package:expance_tracker/models/expance.dart';
 import 'package:expance_tracker/screens/widgets/expancelist/expance_list.dart';
 import 'package:expance_tracker/screens/widgets/newexpance.dart';
@@ -39,10 +40,13 @@ class _ExpancesState extends State<Expances> {
       data.remove(expance);
     });
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Expance deleting..."),
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Expance deleting...",style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+      fontSize: 18,
+      color: selected_color.error,
+    ),),backgroundColor: Theme.of(context).cardTheme.color,
     duration: Duration(seconds: 3),
       
-      action:SnackBarAction(label:"Undo delete", onPressed:(){
+      action:SnackBarAction(label:"Undo delete",textColor: selected_color.onTertiaryFixed,backgroundColor:const Color.fromARGB(255, 149, 159, 216), onPressed:(){
       setState(() {
         data.insert(indx, expance);
       });
@@ -59,7 +63,7 @@ class _ExpancesState extends State<Expances> {
     return Scaffold(
         appBar: AppBar(
            title: Text(" Tali Khoroj"),
-           backgroundColor: Colors.grey,
+           
 
           actions: [
                    IconButton(onPressed: _addnewexpance, 
@@ -68,7 +72,7 @@ class _ExpancesState extends State<Expances> {
         ),
         body: Column(
           children: [
-            Center(child: Text("Hello Expenxe")),
+           
            Expanded(child: ExpanceList(expences: data,onremoveData: onremoveData,))
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:expance_tracker/main.dart';
 import 'package:expance_tracker/models/expance.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,10 @@ class _NewexpanceState extends State<Newexpance> {
   final invalidamount=amount==null||amount<=0;
   if(titlecontroler.text.trim().isEmpty||invalidamount||_showedate==null){
     showDialog(context: context, builder:(ctx)=>AlertDialog(
-          title: Text("Invalid Datainput"),
-          content: Text("Please enter all the data correctly !!"),
+          title: Text("Invalid Datainput",style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            color: selected_color.error,
+          ),),
+          content: Text("Please enter all the data correctly !!",style: Theme.of(context).textTheme.bodyMedium,),
           actions: [
             TextButton(onPressed: (){
                Navigator.pop(ctx);
@@ -152,7 +155,7 @@ class _NewexpanceState extends State<Newexpance> {
           
             ],
           ),
-          Spacer(),
+         // Spacer(),
               ElevatedButton(
                 onPressed: checkData,
                 child: Text("save changes"),
